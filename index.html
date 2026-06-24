@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evo_mobile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style>        
+    :root{
+        --bg:black;
+        --surface: #13131a;
+        --surface2: #1c1c27;
+        --border: rgba(255,255,255,0.08);
+        --accent: #5b5bd6;
+        --accent-glow: rgba(91,91,214,0.35);
+        --accent2: #00e5ff;
+        --text: #f0f0f5;
+        --muted: #8888a8;
+        --nav-h: 68px;
+        --radius: 14px;
+        --font-display: 'Space Grotesk', sans-serif;
+        --font-body: 'Inter', sans-serif;
+    }
+    *,*::before,*::after{box-sizing: border-box;padding: 0;margin: 0;}
+    html{scroll-behavior: smooth;}
+    body{
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    nav{
+        position: fixed;
+        top: 0;left: 0;right: 0;
+        height: var(--nav-h);
+        background: rgba(10,10,15,0.88);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5%;
+        z-index: 999;
+    }
+    .logo{
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text);
+        letter-spacing: -0.5px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .logo span{
+        color: var(--accent2);
+    }
+    .nav-links{
+        display: flex;
+        gap: 2.4rem;
+        list-style: none;
+    }
+    .nav-links a{
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+        cursor: pointer;
+    }
+    .nav-links a:hover, .nav-links a.active {color: var(--text);}
+    .nav-cta{
+        background-color: var(--accent) !important;
+        color: #fff !important;
+        padding: 0.45rem 1.2rem !important;
+        border-radius: 8px !important;
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+    }
+    .nav-cta:hover{background: #6e6ef0; box-shadow: 0 0 20px var(--accent-glow);}
+    .hamburger{
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+    }
+    .hamburger span{
+        display: block;width: 24px;height: 2px;
+        background: var(--text);border-radius: 2px;
+        transition: transform 0.3s,opacity 0.3s;
+    }
+    .page{display: none;}
+    .page.active{display: block;}
+
+    #home{
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: calc(var(--nav-h) + 60px) 5% 80px;
+        position: relative;
+        overflow: hidden;
+    }
+    #home::before{
+        content: '';
+        position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+        width: 700px;height: 700px;
+        background: radial-gradient(circle,rgba(91,91,214,0.18) 0%, transparent 65%);
+        pointer-events: none;
+    }
+    #home::after{
+        content: '';
+        position: absolute; bottom: 10%; right: 10%;
+        width: 300px;height: 300px;
+        background: radial-gradient(circle,rgba(0,229,255,0.1) 0%, transparent 65%);
+        pointer-events: none;
+    }
+    .hero-eyebrow{
+        display: inline-flex;align-items: center;gap: 8px;
+        font-size: 0.78rem;font-weight: 500;letter-spacing: 0.12em;
+        text-transform: uppercase; color: var(--accent2);
+        background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+        padding: 6px 16px; border-radius: 40px; margin-bottom: 1.8rem;
+    }
+    .hero-eyebrow::before{
+        content: '';width: 6px;height: 6px;
+        background: var(--accent2); border-radius: 100%;
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse{
+        0%,100%{opacity: 1; transform: scale(1);}
+        50%{opacity: 0.4; transform: scale(0.7);}
+    }
+    .hero-title{
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem,7vw,5.5rem);
+        font-weight: 700;line-height: 1.08;
+        letter-spacing: -0.03em; margin-bottom: 1.8rem;
+    }
+    .hero-title .line2{
+        background: linear-gradient(90deg, var(--accent) 0%,var(--accent2) 100%);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub{
+        max-width: 520px; color: var(--muted);
+        font-size: 1rem;line-height: 1.7;margin-bottom: 2.8rem;
+    }
+    .hero-actions{display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;}
+    .btn-primary{
+        background: var(--accent); color: #fff;
+        padding: 0.85rem 2.2rem; border-radius: 10px;
+        font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+        border: none;cursor: pointer;text-decoration: none;
+        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover{
+        background: #6e6ef0; transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow);
+    }
+    .btn-outline{
+        background: transparent color var(--accent);
+        padding: 0.85rem 2.2rem; border-radius: 10px;
+        font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+        border: 1px solid var(--border); cursor: pointer; text-decoration: none;
+        transition: border-color 0.2s, background 0.2s;
+        display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover{border-color:rgba(255,255,255,0.25); background: rgba(255,255,255,0.04);}
+    .hero-stats{
+        display: flex; gap: 3rem;
+        margin-top: 5rem; padding-top: 3rem;
+        border-top: 1px solid var(--border);
+    }
+    .hero-stat .num{font-family: var(--font-display); font-size: 2rem; font-weight: 700;}
+    .hero-stat .num span{color: var(--accent2);}
+    .hero-stat .label{font-size: 1rem; color: var(--muted); letter-spacing: 0.04em;}
+
+    .section-header{
+        text-align: center;
+        padding: calc(var(--nav-h) + 60px) 5% 48px;
+    }
+    .section-header h2{
+        font-family: var(--font-display);
+        font-size: clamp(1.8rem,4vw,2.8rem);
+        font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.8rem;
+    }
+    .section-header p{
+        color: var(--muted); max-width: 480px; margin: 0 auto;
+    }
+    .tag{
+        display: inline-block; font-size: 0.72rem; font-weight: 600;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--accent2); margin-bottom: 0.8rem;
+    }
+    /*phones*/
+
+    .phones-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
+        gap: 1.5rem;
+        padding: 0 5% 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .phone-card{
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+        transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    .phone-card:hover{
+        border-color: var(--accent);
+        transform: translateY(-5px);
+        box-shadow: 0 18px 44px #13131a;
+    }
+    .phone-card .badge{
+        position: absolute; top: 1rem; right: 0.8rem;
+        font-size: 0.7rem; font-weight: 600;
+        padding: 3px 10px; border-radius: 20px;
+        background: rgba(91,91,214,0.25); color: var(--accent2);
+        border: 1px solid rgba(91,91,214,0.25);
+        letter-spacing: 0.04em; z-index: 1;
+    }
+    .phone-img-wrap{
+        background: #1c1c27;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.6rem 1.2rem;
+        height: 220px;
+        overflow: hidden;
+    }
+    .phone-img-wrap img{
+        max-height: 200px;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 15px;
+        transition: transform 0.2s;
+    }
+    .phone-img-wrap img:hover{transform: scale(1.05);}
+    .phone-body{
+        padding: 1.2rem 1.4rem 1.4rem; flex: 1; display: flex; flex-direction: column;
+    }
+    .phone-body h3{
+        font-family: var(--font-display);
+        font-size: 1.35rem; font-weight: 600; margin-top: auto;
+    }
+    .phone-body .specs{
+        font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem;
+    }
+    .ph-info{
+        font-size: 0.9rem;
+        color: #f0f0f5;
+        text-decoration: none;
+        margin-bottom: 0.8rem;
+    }
+    .ph-info:hover{color: #6e6ef0;}
+    .phone-body .price{
+        font-family: var(--font-display);
+        font-size: 1.35rem; font-weight: 700; margin-top: auto;
+    }
+    .phone-body .price span{
+        font-size: 0.82rem; font-weight: 400; color: var(--muted);
+    }
+    .add-btn{
+        margin-top: 0.9rem; width: 100%; padding: 0.6rem;
+        background: rgba(91,91,214,0.12);
+        border: 1px solid rgba(91,91,214,0.3);
+        border-radius: 8px; color: #f0f0f5;
+        font-family: var(--font-display); font-weight: 600; 
+        font-size: 0.9rem; cursor: pointer;
+        transition: background 0.2s;
+    }
+    .add-btn:hover{
+        background: #5b5bd6;
+    }
+
+    /*Accessories*/
+
+    .accessories-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fill ,minmax(230px,1fr));
+        gap: 1.5rem;
+        padding: 0 5% 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .acc-card{
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        cursor: pointer;
+        overflow: hidden;
+        transition: border-color 0.2s, transform 0.2s, box-shadow0.2s;
+        display: flex; flex-direction: column;
+    }
+    .acc-card:hover{
+        border-color: rgba(0,229,255,0.3);
+        transform: translateY(-4px);
+        box-shadow:0 14px 30px rgba(0,0,0,0.4);
+    }
+    .acc-img-wrap{
+        background: #13131a;
+        display: flex; align-items: center;justify-content: center;
+        padding: 1.4rem 1rem;
+        height: 180px; overflow: hidden;
+    }
+    .acc-img-wrap img{
+        max-height: 140px; max-width: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        transition: transform 0.2s;
+    }
+    .acc-img-wrap img:hover{transform: scale(1.08);}
+    .acc-body{
+        padding: 1rem 1.2rem 1.3rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;}
+    .acc-body h3{font-family: var(--font-display); font-size: 0.92rem; font-weight: 600; margin-bottom: 0.5rem;}
+    .acc-body p{ font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; line-height: 1.5;}
+    .acc-price{
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--accent2);
+        margin-top: auto;
+    }
+    .acc-add-btn{
+        background: rgba(91,91,214,0.12);
+        margin-top: 1.5rem; width: 100%; padding: 0.6rem;
+        border: 1px solid #8888a8;
+        border-radius: 10px; color: #f0f0f5;
+        font-family: var(--font-display); font-size: 0.87rem; font-weight: 600;
+        cursor: pointer;
+        transition: background;
+    }
+    .acc-add-btn:hover{
+        background: rgba(91,91,214,0.26);
+    }
+
+    /*Repairs*/
+
+    .repairs-wrap{
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 5% 80px;
+    }
+    .repair-card{
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 1.6rem 2rem;
+        display: flex; align-items: center; gap: 1.6rem;
+        margin-bottom: 1rem;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+    }
+    .repair-card:hover{border-color: rgba(0,229,255,0.2); box-shadow: 0 8px 24px rgba(0,0,0,0.3);}
+    .repair-info{flex: 1;}
+    .repair-info h3{
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    .repair-info p{
+        font-size: 0.85rem; color: var(--muted); line-height: 1.5;
+    }
+    .repair-price{text-align: right; flex-shrink: 0;}
+    .repair-from{
+        font-size: 0.85rem; color: var(--muted); text-transform: uppercase;
+    }
+    .diff{font-size: 0.8rem; color: var(--muted);}
+    .repair-amount{font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;}
+    .book-repair-btn{
+        display: block; width: 100%; margin-top: 2rem; padding: 1rem;
+        background: #5b5bd6; color: #f0f0f5; border: 1px solid #8888a8; border-radius: 10px;
+        font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+        cursor: pointer; text-align: center;
+        transition: background 0.2s;
+    }
+    .book-repair-btn:hover{background: #6e6ef0;}
+
+    /*Contact*/
+
+    .contact-wrap{
+        max-width: 680px; margin: 0 auto; padding: 0 5% 80px;
+    }
+    .contact-grid{
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem;
+    }
+    .contact-tile{
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 1.4rem;
+    }
+    .contact-tile h4{
+        font-family: var(--font-display); font-size: 0.85rem; font-weight: 600; 
+        margin-bottom: 0.3rem;
+        color: var(--muted);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+    .contact-tile p{font-size: 0.9rem;}
+    .contact-form{
+        background: var(--surface); border: 1px solid var(--radius); border-radius: var(--radius); padding: 2rem;
+    }
+    .form-row{
+        display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .form-group{margin-bottom: 1.2rem;}
+    .form-group label{display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-bottom: 0.4rem;}
+    .form-group input, .form-group select, .form-group textarea{
+        width: 100%; background: var(--bg); border: 1px solid var(--border);
+        border-radius: 10px; color: #f0f0f5; padding: 0.7rem 1rem;
+        font-family: var(--font-display); size: 0.9rem; outline: none;
+        transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus{border-color: var(--accent);}
+    .form-group textarea{resize: vertical; min-height: 110px;}
+    .form-group select option{background: var(--surface);}
+    .submit-btn{
+        width: 100%; padding: 0.9rem; background: var(--accent); color: #f0f0f5;
+        border: 1px solid var(--muted); border-radius: 10px;
+        font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+    .submit-btn:hover{background: #6e6ef0;}
+
+    /*About*/
+
+    .about-wrap{max-width: 1200px; margin: 0 auto; padding: 0 5% 80px;}
+    .about-hero-text{
+        font-family: var(--font-display); font-size: clamp(1.3rem,3vw,1.9rem); font-weight: 600; line-height: 1.4; margin-bottom: 1.6rem;
+    }
+    .about-body{font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 3rem;}
+    .about-values{
+        display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 1.2rem; margin-bottom: 3rem;
+    }
+    .value-card{
+        background: var(--surface); border: 1px solid var(--border);
+        border-radius: var(--radius); padding: 1.4rem;
+    }
+    .value-card h4{
+        font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;
+    }
+    .value-card p{
+        font-size: 0.9rem; color: var(--muted); line-height: 1.6;
+    }
+    .team-grid{
+        display: grid; grid-template-columns: repeat(auto-fill,minmax(180px,1fr)); gap: 1.2rem;
+    }
+    .team-card{
+        background: var(--surface); border: 1px solid var(--border); border-radius: 10px; text-align: center; padding: 1.4rem;
+    }
+    .team-card h4{
+        font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem;
+    }
+    .team-card p{color: var(--muted); font-size: 0.9rem;}
+
+    /*Footer*/
+    footer{
+        border-top: 1px solid var(--border); padding: 2rem 5%; display: flex; align-items: center; justify-content: space-between;
+        flex-wrap: wrap; gap: 1rem;
+    }
+    footer .logo{font-size: 1.1rem;}
+    footer p{font-size: 0.9rem; color: var(--muted);}
+
+    /*showToast*/
+    .toast{
+        position: fixed; bottom: 2rem; right: 2rem;
+        background: var(--surface2); border: 1px solid var(--border);
+        border-radius: 10px; padding: 1rem 1.4rem;
+        border-left: 2px solid var(--accent2);
+        font-size: 0.9rem; color: var(--text);
+        z-index: 9999; transform: translateY(100px); opacity: 0;
+        max-width: 280px;
+        transition: transform 0.2s,opacity 0.2s;
+    } 
+    .toast.show{transform: translateY(0);opacity: 1;}
+
+    /*responsive*/
+    @media (max-width: 700px) {
+       .nav-links { display: none; flex-direction: column; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--surface); padding: 1rem 5%; border-bottom: 1px solid var(--border); gap: 0; }
+       .nav-links.open { display: flex; }
+       .nav-links li { padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+       .nav-links li:last-child { border-bottom: none; }
+       .hamburger { display: flex; }
+       .hero-stats { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+       .repair-card { flex-wrap: wrap; }
+       .repair-price { width: 100%; text-align: left; }
+       .form-row { grid-template-columns: 1fr; }
+       .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+       *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="logo" onclick="showPage('home')">EVO <span>Mobile</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a onclick="showPage('phones')" data-page="phones">Phones</a></li>
+            <li><a onclick="showPage('accessories')" data-page="accessories">Accessories</a></li>
+            <li><a onclick="showPage('repairs')" data-page="repairs">Repairs</a></li>
+            <li><a onclick="showPage('contact')" data-page="contact">Contact</a></li>
+            <li><a onclick="showPage('about')" data-page="about">About Us</a></li>
+            <li><a class="nav-cta" onclick="showPage('phones')">Shop Now</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <!--Home Page-->
+    <div id="page-home" class="page active">
+        <section id="home">
+            <div class="hero-eyebrow">Sri Lanka's #1 Mobile Destination</div>
+            <h1 class="hero-title">The Latest Phones,<br><span class="line2">Picked For You.</span></h1>
+            <p class="hero-sub">EVO Mobile brings you flagship smartphones, premium accessories and expert repairs — all under one roof.</p>
+            <div class="hero-actions">
+                <a class="btn-primary" onclick="showPage('phones')">Shop Now &rarr;</a>
+                <a class="btn-outline" onclick="showPage('repairs')">Book a Repair</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="num">500<span>+</span></div>
+                    <div class="label">Divices in Stock</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="num">10<span>k+</span></div>
+                    <div class="label">Happy Coustomers</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="num">24<span>h</span></div>
+                    <div class="label">Repair Turnaround</div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <span class="logo">EVO <span style="color: var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!--Phones page-->
+    <div id="page-phones" class="page">
+        <div class="section-header">
+            <span class="tag">Our Collection</span>
+            <h2>Latest Smartphones</h2>
+            <p>Flagship and mid-range devices from every major brand, unlocked and ready to go.</p>
+        </div>
+        <div class="phones-grid">
+            <!--IPHONE 17 PRO MAX-->
+            <div class="phone-card">
+                <span class="badge">NEW</span>
+                <div class="phone-img-wrap">
+                    <img src="phones/17 pro max.jpg" alt="iphone 17 pro max">
+                </div>
+                <div class="phone-body">
+                    <h3>iphone 17 Pro Max</h3>
+                    <p class="specs">6.9" . Apple A19 Pro . 256GB 12GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/apple_iphone_17_pro_max-13964.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 368,000 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+            <!--iphone15 Pro-->
+            <div class="phone-card">
+                <div class="phone-img-wrap">
+                    <img src="phones/15 pro.jpg" alt="iphone 15 pro">
+                </div>
+                <div class="phone-body">
+                    <h3>iphone 15 Pro</h3>
+                    <p class="specs">6.1" . Apple A17 Pro . 512GB 8GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/apple_iphone_15_pro-12557.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 195,000 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+            <!--iphone14 Pro-->
+            <div class="phone-card">
+                <span class="badge">HOT</span>
+                <div class="phone-img-wrap">
+                    <img src="phones/14 pro.jpg" alt="iphone 14 pro">
+                </div>
+                <div class="phone-body">
+                    <h3>iphone 14 Pro</h3>
+                    <p class="specs">6.1" . Apple A16 Bionic . 256GB 6GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/apple_iphone_14_pro-11860.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 172,000 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+            <!--Samsung Galaxy S25 Ultra-->
+            <div class="phone-card">
+                <span class="badge">NEW</span>
+                <div class="phone-img-wrap">
+                    <img src="phones\Samsung S25 Ultra.jpg" alt="Samsung Galaxy S25 Ultra">
+                </div>
+                <div class="phone-body">
+                    <h3>Samsung Galaxy S25 Ultra</h3>
+                    <p class="specs">6.9" . Snapdragon 8 Elite . 512GB 12GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/samsung_galaxy_s25_ultra-13322.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 239,000 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+            <!--Samsung Galaxy A55-->
+            <div class="phone-card">
+                <span class="badge">VALUE</span>
+                <div class="phone-img-wrap">
+                    <img src="phones\Samsung Galaxy A55 5G.jpg" alt="Samsung Galaxy A55">
+                </div>
+                <div class="phone-body">
+                    <h3>Samsung Galaxy A55</h3>
+                    <p class="specs">6.6" . Exynos 1480 . 128GB 8GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/samsung_galaxy_a55-12824.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 95,000 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+            <!--Samsung Galaxy A16-->
+            <div class="phone-card">
+                <div class="phone-img-wrap">
+                    <img src="phones\Samsung Galaxy A17.jpg" alt="Samsung Galaxy A16">
+                </div>
+                <div class="phone-body">
+                    <h3>Samsung Galaxy A16</h3>
+                    <p class="specs">6.7" . Mediatek Helio G99 . 128GB 6GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/samsung_galaxy_a17_5g-14041.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 71,900 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+            <!--Google Pixel 9-->
+            <div class="phone-card">
+                <span class="badge">HOT</span>
+                <div class="phone-img-wrap">
+                    <img src="phones\Google Pixel 9.jpg" alt="Google Pixel 9">
+                </div>
+                <div class="phone-body">
+                    <h3>Google Pixel 9</h3>
+                    <p class="specs">6.3" . Google Tensor G4 . 128GB 12GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/google_pixel_9-13219.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 183,000 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+            <!--Redmi Note 15 5G-->
+            <div class="phone-card">
+                <span class="badge">NEW</span>
+                <div class="phone-img-wrap">
+                    <img src="phones\Xiaomi Redmi Note 15 5G.jpg" alt="Redmi Note 15 5G">
+                </div>
+                <div class="phone-body">
+                    <h3>Redmi Note 15 5G</h3>
+                    <p class="specs">6.77" . Snapdragon 6 Gen 3 . 256GB 8GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/xiaomi_redmi_note_15_5g_(global)-14328.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 84,900 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+            <!--Redmi 15-->
+            <div class="phone-card">
+                <div class="phone-img-wrap">
+                    <img src="phones\Xiaomi Smartphone Redmi 15.jpg" alt="Redmi 15">
+                </div>
+                <div class="phone-body">
+                    <h3>Redmi 15</h3>
+                    <p class="specs">6.9" . Snapdragon 6s Gen 3 . 128GB 6GB RAM</p>
+                    <a class="ph-info" href="https://www.gsmarena.com/xiaomi_redmi_15_5g-14036.php" target="_blank">Get Full Information</a>
+                    <div class="price">LKR 55,000 <span>/Unit</span></div>
+                    <button class="add-btn" onclick="showToast('iphone 16 pro add to cart')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <span class="logo">EVO <span style="color:var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!--Accessories-->
+    <div id="page-accessories" class="page">
+        <div class="section-header">
+            <span class="tag">Gear Up</span>
+            <h2>Accessories</h2>
+            <p >Cases, chargers, earbuds, and more — curated for every device we sell.</p>
+        </div>
+      <div class="accessories-grid">
+        <div class="acc-card">
+            <!--Airpods pro-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\airpods pro2.jpg" alt="airpods pro">
+            </div>
+            <div class="acc-body">
+                <h3>Airpods Pro2</h3>
+                <p>Active noise cancelation, USB C charching case.</p>
+                <div class="acc-price">LKR 69,499</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods pro add to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Mag Safe-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\magsafe.jpg" alt="Apple MagSafe Charger">
+            </div>
+            <div class="acc-body">
+                <h3>Apple MagSafe Charger</h3>
+                <p>Qi charging. Wireless charging up to 15W.</p>
+                <div class="acc-price">LKR 14,999</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods pro add to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Anker USB C Charger-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\Anker USB C Charger Block 20W.jpg" alt="Anker USB C Charger">
+            </div>
+            <div class="acc-body">
+                <h3>Anker USB C Charger</h3>
+                <p>30W Fast Charging. Superior Temperature Management. Compact and Powerful.</p>
+                <div class="acc-price">LKR 10,999</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods pro add to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Power Bank-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\power bank.jpg" alt="Power Bank">
+            </div>
+            <div class="acc-body">
+                <h3>Power Bank</h3>
+                <p>Capacity: 20000 mAh / 22.5W. POLYMER BATTERY3. Input: Total DC 5=2.4A.</p>
+                <div class="acc-price">LKR 6,999</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods pro add to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Cable-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\Cables.jpg" alt="Anker Zolo USB C to USB C Cable">
+            </div>
+            <div class="acc-body">
+                <h3>Anker Zolo USB C to USB C Cable</h3>
+                <p>Quick, Durable Charging in a Dirt-Resistant Finish. Full-Throttle 240W Charging. 1.5M in Length.</p>
+                <div class="acc-price">LKR 1,499</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods pro add to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--backcovers-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\backcovers.jpg" alt="Backcovers">
+            </div>
+            <div class="acc-body">
+                <h3>Backcovers</h3>
+                <p>Actual product colors may vary slightly</p>
+                <div class="acc-price">LKR 1,000</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods pro add to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card"> 
+            <!--temperd glass-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\temperd glass.jpg" alt="Temperd Glasso">
+            </div>
+            <div class="acc-body">
+                <h3>Temperd Glass</h3>
+                <p>Made Using Tempered Glass With 9H Hardness. High transparency helps display the original color</p>
+                <div class="acc-price">LKR 1,000</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods pro add to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Lens Protector-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\camera glass.jpg" alt="Lens Protector">
+            </div>
+            <div class="acc-body">
+                <h3>Lens Protector</h3>
+                <p>High transparency.</p>
+                <div class="acc-price">LKR 1,200</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods pro add to cart')">Add to Cart</button>
+            </div>
+        </div>
+      </div>
+        <footer>
+            <span class="logo">EVO <span style="color:var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!--Repair-->
+    <div id="page-repairs" class="page">
+        <div class="section-header">
+            <span class="tag">Expert Repairs</span>
+            <h2>Fix it Fast</h2>
+            <p>OEM-grade parts, certified technicians, and same-day service on most repairs.</p>
+        </div>
+        <div class="repairs-wrap">
+            <div class="repair-card">
+                <div class="repair-info">
+                    <h3>Screen Replacement</h3>
+                    <p>Cracked or unresponsive screens fixed with OEM-grade panels.</p>
+                </div>
+                <div class="repair-price">
+                    <div class="repair-from">From</div>
+                    <div class="repair-amount">LKR 7,900</div>
+                    <div class="diff">(Different by phone type)</div>
+                </div>
+            </div>
+            <div class="repair-card">
+                <div class="repair-info">
+                    <h3>Battery Replacement</h3>
+                    <p>Restore all-day battery life with a fresh, certified cell.</p>
+                </div>
+                <div class="repair-price">
+                    <div class="repair-from">From</div>
+                    <div class="repair-amount">LKR 3,500</div>
+                    <div class="diff">(Different by phone type)</div>
+                </div>
+            </div>
+            <div class="repair-card">
+                <div class="repair-info">
+                    <h3>Water Damage</h3>
+                    <p>Professional cleaning and component-level recovery.</p>
+                </div>
+                <div class="repair-price">
+                    <div class="repair-from">From</div>
+                    <div class="repair-amount">LKR 2,800</div>
+                    <div class="diff">(Different by phone type)</div>
+                </div>
+            </div>
+            <div class="repair-card">
+                <div class="repair-info">
+                    <h3>Charging Port</h3>
+                    <p>Fix loose or dead charging ports and connectors.</p>
+                </div>
+                <div class="repair-price">
+                    <div class="repair-from">From</div>
+                    <div class="repair-amount">LKR 1,200</div>
+                    <div class="diff">(Different by phone type)</div>
+                </div>
+            </div>
+            <div class="repair-card">
+                <div class="repair-info">
+                    <h3>Camera Repair</h3>
+                    <p>Blurry or broken cameras replaced and recalibrated.</p>
+                </div>
+                <div class="repair-price">
+                    <div class="repair-from">From</div>
+                    <div class="repair-amount">LKR 3,200</div>
+                    <div class="diff">(Different by phone type)</div>
+                </div>
+            </div>
+            <div class="repair-card">
+                <div class="repair-info">
+                    <h3>Software & Setup</h3>
+                    <p>Diagnostics, data transfer and software troubleshooting.</p>
+                </div>
+                <div class="repair-price">
+                    <div class="repair-from">From</div>
+                    <div class="repair-amount">LKR 4,500</div>
+                    <div class="diff">(Different by phone type)</div>
+                </div>
+            </div>
+            <div class="repair-card">
+                <div class="repair-info">
+                    <h3>Others</h3>
+                    <p>Fix all other issues in confidently.</p>
+                </div>
+            </div>
+            <button class="book-repair-btn" onclick="showPage('contact');showToast('Redirected to contact — book your repair below!')">Book a Repair &rarr;</button>
+        </div>
+        <footer>
+            <span class="logo">EVO <span style="color:var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>  
+    </div>
+
+    <!--Contact-->
+    <div id="page-contact" class="page">
+        <div class="section-header">
+            <span class="tag">Get in Touch</span>
+            <h2>Contact Us</h2>
+            <p>Walk in, call, or send us a message — we'll get back to you the same day.</p>
+        </div>
+          <div class="contact-wrap">
+            <div class="contact-grid">
+                <div class="contact-tile">
+                    <h4>Location</h4>
+                    <p>Pilimatalawa, Kandy, Sri Lanka</p>
+                </div>
+                <div class="contact-tile">
+                    <h4>Phone</h4>
+                    <p>+94 7656789</p>
+                </div>
+                <div class="contact-tile">
+                    <h4>Email</h4>
+                    <p>evo@gmail.com</p>
+                </div>
+                <div class="contact-tile">
+                    <h4>Hours</h4>
+                    <p>Mon-Sat: 7am - 8pm <br>Sun: 7am - 3pm</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="Kavindu">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Rathnayake">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" placeholder="evo@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select name="name" id="num1">
+                        <option>General Enquiry</option>
+                        <option>Book a Repair</option>
+                        <option>Phone Availability</option>
+                        <option>Warranty/returns</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Tell us how we can help..."></textarea>
+                </div>
+                <button class="submit-btn" onclick="showToast('Message sent! We\'ll reply within 24 hours. 👋')">Send Message</button>
+            </div>
+          </div>
+        <footer>
+            <span class="logo">EVO <span style="color:var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>  
+    </div>
+
+    <!--About Us-->
+    <div id="page-about" class="page">
+        <div class="section-header">
+            <span class="tag">Our Story</span>
+            <h2>About EVO mobile</h2>
+        </div>
+        <div class="about-wrap">
+            <p class="about-hero-text">
+                "We started EVO Mobile because we believed Sri Lanka deserved a phone shop that treats every customer like an expert."
+            </p>
+            <p class="about-body">
+                Founded in 2018 in the heart of Pilimatalawa, EVO Mobile has grown from a small repair bench into one of the island's most trusted smartphone destinations. We carry the latest devices from Apple, Samsung, Google, and more — always unlocked, always genuine. Our certified technicians handle everything from a cracked screen to complex motherboard repairs, with a 90-day service guarantee on every job. We're not a chain. We're your neighbours, and we're here for the long run.
+            </p>
+            <span class="tag">WHAT DRIVES US</span>
+            <div class="about-values">
+                <div class="value-card">
+                    <h4>Genuine Parts Only</h4>
+                    <p>We never cut corners. Every repair uses OEM or certified components.</p>
+                </div>
+                <div class="value-card">
+                    <h4>Fast Turnaround</h4>
+                    <p>Most repairs done same day, so you're never long without your device.</p>
+                </div>
+                <div class="value-card">
+                    <h4>90-Day Guarantee</h4>
+                    <p>Every repair is backed by a full 90-day warranty, no questions asked.</p>
+                </div>
+                <div class="value-card">
+                    <h4>Honest Advice</h4>
+                    <p>We'll tell you when it's cheaper to fix than replace — always.</p>
+                </div>
+            </div>
+            <span class="tag">THE TEAM</span>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h4>Dinesh Silva</h4>
+                    <p>Founder &amp; Director</p>
+                </div>
+                <div class="team-card">
+                    <h4>Sachini Perera</h4>
+                    <p>Lead Technician</p>
+                </div>
+                <div class="team-card">
+                    <h4>Roshan Mendis</h4>
+                    <p>Sales &amp; Support</p>
+                </div>
+                <div class="team-card">
+                    <h4>Amali Fernando</h4>
+                    <p>Customer Relations</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <span class="logo">EVO <span style="color:var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script>
+        function showPage(page){
+            document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+            document.getElementById('page-' + page).classList.add('active');
+            document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+                a.classList.toggle('active', a.dataset.page === page);
+            });
+            window.scrollTo({top: 0 , behavior: 'smooth'});
+            document.getElementById('navLinks').classList.remove('open');
+        }
+        document.getElementById('hamburger').addEventListener('click' , () =>{
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+        function showToast(msg){
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'),3200);
+        }
+    </script>
+</body>
+</html>
