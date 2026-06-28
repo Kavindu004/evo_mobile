@@ -203,7 +203,31 @@
         color: var(--accent2); margin-bottom: 0.8rem;
     }
     /*phones*/
-
+    .sort-bar{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 0 5% 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .result-count{
+        font-size: 1rem;
+        color: var(--muted);
+    }
+    .sort-bar select{
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-family: var(--font-display);
+        cursor: pointer;
+    }
+    .sort-bar select:focus{outline: 1px solid var(--accent2);}
     .phones-grid{
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(260px,1fr));
@@ -212,6 +236,7 @@
         max-width: 1200px;
         margin: 0 auto;
     }
+    .phone-card.hide{display: none;}
     .phone-card{
         background: var(--surface);
         border: 1px solid var(--border);
@@ -338,7 +363,7 @@
         font-family: var(--font-display);
         font-size: 1.4rem;
         font-weight: 600;
-        color: var(--accent2);
+        color: var(--text);
         margin-top: auto;
     }
     .acc-add-btn{
@@ -565,9 +590,22 @@
             <h2>Latest Smartphones</h2>
             <p>Flagship and mid-range devices from every major brand, unlocked and ready to go.</p>
         </div>
+        <div class="sort-bar">
+            <div class="result-count"> <span id="resultCount"> 9 </span> Phones Available </div>
+            <div>
+                <label for="brandfilter">Filter by brand</label>
+                <select id="brandFilter" onchange="filterPhones()">
+                    <option value="all">All Phones</option>
+                    <option value="iphones">iPhones</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="pixel">Pixel</option>
+                    <option value="redmi">Redmi</option>
+                </select>
+            </div>
+        </div>
         <div class="phones-grid">
             <!--IPHONE 17 PRO MAX-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="iphones">
                 <span class="badge">NEW</span>
                 <div class="phone-img-wrap">
                     <img src="phones/17 pro max.jpg" alt="iphone 17 pro max">
@@ -581,7 +619,7 @@
                 </div>
             </div>
             <!--iphone15 Pro-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="iphones">
                 <div class="phone-img-wrap">
                     <img src="phones/15 pro.jpg" alt="iphone 15 pro">
                 </div>
@@ -594,7 +632,7 @@
                 </div>
             </div>
             <!--iphone14 Pro-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="iphones">
                 <span class="badge">HOT</span>
                 <div class="phone-img-wrap">
                     <img src="phones/14 pro.jpg" alt="iphone 14 pro">
@@ -608,7 +646,7 @@
                 </div>
             </div>
             <!--Samsung Galaxy S25 Ultra-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="samsung">
                 <span class="badge">NEW</span>
                 <div class="phone-img-wrap">
                     <img src="phones\Samsung S25 Ultra.jpg" alt="Samsung Galaxy S25 Ultra">
@@ -622,7 +660,7 @@
                 </div>
             </div>
             <!--Samsung Galaxy A55-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="samsung">
                 <span class="badge">VALUE</span>
                 <div class="phone-img-wrap">
                     <img src="phones\Samsung Galaxy A55 5G.jpg" alt="Samsung Galaxy A55">
@@ -636,7 +674,7 @@
                 </div>
             </div>
             <!--Samsung Galaxy A16-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="samsung">
                 <div class="phone-img-wrap">
                     <img src="phones\Samsung Galaxy A17.jpg" alt="Samsung Galaxy A16">
                 </div>
@@ -649,7 +687,7 @@
                 </div>
             </div>
             <!--Google Pixel 9-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="pixel">
                 <span class="badge">HOT</span>
                 <div class="phone-img-wrap">
                     <img src="phones\Google Pixel 9.jpg" alt="Google Pixel 9">
@@ -663,7 +701,7 @@
                 </div>
             </div>
             <!--Redmi Note 15 5G-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="redmi">
                 <span class="badge">NEW</span>
                 <div class="phone-img-wrap">
                     <img src="phones\Xiaomi Redmi Note 15 5G.jpg" alt="Redmi Note 15 5G">
@@ -677,7 +715,7 @@
                 </div>
             </div>
             <!--Redmi 15-->
-            <div class="phone-card">
+            <div class="phone-card" data-brand="redmi">
                 <div class="phone-img-wrap">
                     <img src="phones\Xiaomi Smartphone Redmi 15.jpg" alt="Redmi 15">
                 </div>
@@ -1039,6 +1077,17 @@
         document.getElementById('hamburger').addEventListener('click' , () =>{
             document.getElementById('navLinks').classList.toggle('open');
         });
+        function filterPhones(){
+            const selected = document.getElementById('brandFilter').value;
+            const cards = document.querySelectorAll('.phone-card');
+            let count = 0;
+            cards.forEach(card => {
+                const matches = selected === 'all' || card.dataset.brand === selected;
+                card.classList.toggle('hide', !matches);
+                if (matches) count++;
+            });
+            document.getElementById('resultCount').textContent = count;
+        }
         function showToast(msg){
             const t = document.getElementById('toast');
             t.textContent = msg;
