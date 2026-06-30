@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evo_mobile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!--nav bar-->
+    <nav>
+        <a class="logo" href="index.html">EVO <span>Mobile</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" data-page="home">Home</a></li>
+            <li><a href="phones.html" data-page="phones">Phones</a></li>
+            <li><a href="accessories.html" data-page="accessories">Accessories</a></li>
+            <li><a href="repairs.html" data-page="repairs">Repairs</a></li>
+            <li><a href="contact.html" class="active" data-page="contact">Contact</a></li>
+            <li><a href="about.html" data-page="about">About Us</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <!--contact page-->
+        <div class="section-header">
+            <span class="tag">Get in Touch</span>
+            <h2>Contact Us</h2>
+            <p>Walk in, call, or send us a message — we'll get back to you the same day.</p>
+        </div>
+          <div class="contact-wrap">
+            <div class="contact-grid">
+                <div class="contact-tile">
+                    <h4>Location</h4>
+                    <p>Pilimatalawa, Kandy, Sri Lanka</p>
+                </div>
+                <div class="contact-tile">
+                    <h4>Phone</h4>
+                    <p>+94 7656789</p>
+                </div>
+                <div class="contact-tile">
+                    <h4>Email</h4>
+                    <p>evo@gmail.com</p>
+                </div>
+                <div class="contact-tile">
+                    <h4>Hours</h4>
+                    <p>Mon-Sat: 7am - 8pm <br>Sun: 7am - 3pm</p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="Kavindu">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Rathnayake">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" placeholder="evo@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <select name="name" id="num1">
+                        <option>General Enquiry</option>
+                        <option>Book a Repair</option>
+                        <option>Phone Availability</option>
+                        <option>Warranty/returns</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Tell us how we can help..."></textarea>
+                </div>
+                <button class="submit-btn" onclick="showToast('Message sent! We\'ll reply within 24 hours. 👋')">Send Message</button>
+            </div>
+          </div>
+        <footer>
+            <span class="logo">EVO <span style="color:var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>  
+        
+    <div class="toast" id="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evo_mobile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!--nav bar-->
+    <nav>
+        <a class="logo" href="index.html">EVO <span>Mobile</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" data-page="home">Home</a></li>
+            <li><a href="phones.html" data-page="phones">Phones</a></li>
+            <li><a href="accessories.html" data-page="accessories">Accessories</a></li>
+            <li><a href="repairs.html" data-page="repairs">Repairs</a></li>
+            <li><a href="contact.html" data-page="contact">Contact</a></li>
+            <li><a href="about.html" class="active" data-page="about">About Us</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <!--about page-->
+        <div class="section-header">
+            <span class="tag">Our Story</span>
+            <h2>About EVO Mobile</h2>
+        </div>
+        <div class="about-wrap">
+            <p class="about-hero-text">
+                "We started EVO Mobile because we believed Sri Lanka deserved a phone shop that treats every customer like an expert."
+            </p>
+            <p class="about-body">
+                Founded in 2018 in the heart of Pilimatalawa, EVO Mobile has grown from a small repair bench into one of the island's most trusted smartphone destinations. We carry the latest devices from Apple, Samsung, Google, and more — always unlocked, always genuine. Our certified technicians handle everything from a cracked screen to complex motherboard repairs, with a 90-day service guarantee on every job. We're not a chain. We're your neighbours, and we're here for the long run.
+            </p>
+            <span class="tag">WHAT DRIVES US</span>
+            <div class="about-values">
+                <div class="value-card">
+                    <h4>Genuine Parts Only</h4>
+                    <p>We never cut corners. Every repair uses OEM or certified components.</p>
+                </div>
+                <div class="value-card">
+                    <h4>Fast Turnaround</h4>
+                    <p>Most repairs done same day, so you're never long without your device.</p>
+                </div>
+                <div class="value-card">
+                    <h4>90-Day Guarantee</h4>
+                    <p>Every repair is backed by a full 90-day warranty, no questions asked.</p>
+                </div>
+                <div class="value-card">
+                    <h4>Honest Advice</h4>
+                    <p>We'll tell you when it's cheaper to fix than replace — always.</p>
+                </div>
+            </div>
+            <span class="tag">THE TEAM</span>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h4>Dinesh Silva</h4>
+                    <p>Founder &amp; Director</p>
+                </div>
+                <div class="team-card">
+                    <h4>Sachini Perera</h4>
+                    <p>Lead Technician</p>
+                </div>
+                <div class="team-card">
+                    <h4>Roshan Mendis</h4>
+                    <p>Sales &amp; Support</p>
+                </div>
+                <div class="team-card">
+                    <h4>Amali Fernando</h4>
+                    <p>Customer Relations</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <span class="logo">EVO <span style="color:var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>
+
+    <div class="toast" id="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>

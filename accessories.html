@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>evo_mobile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!--nav bar-->
+    <nav>
+        <a class="logo" href="index.html">EVO <span>Mobile</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" data-page="home">Home</a></li>
+            <li><a href="phones.html" data-page="phones">Phones</a></li>
+            <li><a href="accessories.html" class="active" data-page="accessories">Accessories</a></li>
+            <li><a href="repairs.html" data-page="repairs">Repairs</a></li>
+            <li><a href="contact.html" data-page="contact">Contact</a></li>
+            <li><a href="about.html" data-page="about">About Us</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <!--accessories page-->
+        <div class="section-header">
+            <span class="tag">Gear Up</span>
+            <h2>Accessories</h2>
+            <p >Cases, chargers, earbuds, and more — curated for every device we sell.</p>
+        </div>
+      <div class="accessories-grid">
+        <div class="acc-card">
+            <!--Airpods pro-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\airpods pro2.jpg" alt="airpods pro">
+            </div>
+            <div class="acc-body">
+                <h3>Airpods Pro2</h3>
+                <p>Active noise cancelation, USB C charching case.</p>
+                <div class="acc-price">LKR 69,499</div>
+                <button class="acc-add-btn" onclick="showToast('Airpods Pro2 added to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Mag Safe-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\magsafe.jpg" alt="Apple MagSafe Charger">
+            </div>
+            <div class="acc-body">
+                <h3>Apple MagSafe Charger</h3>
+                <p>Qi charging. Wireless charging up to 15W.</p>
+                <div class="acc-price">LKR 14,999</div>
+                <button class="acc-add-btn" onclick="showToast('Apple MagSafe Charger added to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Anker USB C Charger-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\Anker USB C Charger Block 20W.jpg" alt="Anker USB C Charger">
+            </div>
+            <div class="acc-body">
+                <h3>Anker USB C Charger</h3>
+                <p>30W Fast Charging. Superior Temperature Management. Compact and Powerful.</p>
+                <div class="acc-price">LKR 10,999</div>
+                <button class="acc-add-btn" onclick="showToast('Anker USB C Charger added to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Power Bank-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\power bank.jpg" alt="Power Bank">
+            </div>
+            <div class="acc-body">
+                <h3>Power Bank</h3>
+                <p>Capacity: 20000 mAh / 22.5W. POLYMER BATTERY3. Input: Total DC 5=2.4A.</p>
+                <div class="acc-price">LKR 6,999</div>
+                <button class="acc-add-btn" onclick="showToast('Power Bank added to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Cable-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\Cables.jpg" alt="Anker Zolo USB C to USB C Cable">
+            </div>
+            <div class="acc-body">
+                <h3>Anker Zolo USB C to USB C Cable</h3>
+                <p>Quick, Durable Charging in a Dirt-Resistant Finish. Full-Throttle 240W Charging. 1.5M in Length.</p>
+                <div class="acc-price">LKR 1,499</div>
+                <button class="acc-add-btn" onclick="showToast('Anker Zolo USB C to USB C Cable added to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--backcovers-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\backcovers.jpg" alt="Backcovers">
+            </div>
+            <div class="acc-body">
+                <h3>Backcovers</h3>
+                <p>Actual product colors may vary slightly</p>
+                <div class="acc-price">LKR 1,000</div>
+                <button class="acc-add-btn" onclick="showToast('Backcovers added to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card"> 
+            <!--temperd glass-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\temperd glass.jpg" alt="Temperd Glasso">
+            </div>
+            <div class="acc-body">
+                <h3>Temperd Glass</h3>
+                <p>Made Using Tempered Glass With 9H Hardness. High transparency helps display the original color</p>
+                <div class="acc-price">LKR 1,000</div>
+                <button class="acc-add-btn" onclick="showToast('Temperd Glass added to cart')">Add to Cart</button>
+            </div>
+        </div>
+        <div class="acc-card">
+            <!--Lens Protector-->
+
+            <div class="acc-img-wrap">
+                <img src="accessories\camera glass.jpg" alt="Lens Protector">
+            </div>
+            <div class="acc-body">
+                <h3>Lens Protector</h3>
+                <p>High transparency.</p>
+                <div class="acc-price">LKR 1,200</div>
+                <button class="acc-add-btn" onclick="showToast('Lens Protector added to cart')">Add to Cart</button>
+            </div>
+        </div>
+      </div>
+        <footer>
+            <span class="logo">EVO <span style="color:var(--accent2)">Mobile</span></span>
+            <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
+        </footer>
+        
+    <div class="toast" id="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>
