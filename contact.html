@@ -35,22 +35,22 @@
           <div class="contact-wrap">
             <div class="contact-grid">
                 <div class="contact-tile">
-                    <div class="ct-icon">📍</div>
+                    <div class="ct-icon"><i class="fa-solid fa-location-dot"></i></div>
                     <h4>Location</h4>
                     <p>Pilimatalawa, Kandy, Sri Lanka</p>
                 </div>
                 <div class="contact-tile">
-                    <div class="ct-icon">📱</div>
+                    <div class="ct-icon"><i class="fa-solid fa-mobile"></i></div>
                     <h4>Phone</h4>
                     <p>+94 7656789</p>
                 </div>
                 <div class="contact-tile">
-                    <div class="ct-icon">📩</div>
+                    <div class="ct-icon"><i class="fa-solid fa-envelope"></i></div>
                     <h4>Email</h4>
                     <p>evo@gmail.com</p>
                 </div>
                 <div class="contact-tile">
-                    <div class="ct-icon">⌚</div>
+                    <div class="ct-icon"><i class="fa-solid fa-clock"></i></div>
                     <h4>Hours</h4>
                     <p>Mon-Sat: 7am - 8pm <br>Sun: 7am - 3pm</p>
                 </div>
@@ -87,26 +87,58 @@
                 <button class="submit-btn" onclick="showToast('Message sent! We\'ll reply within 24 hours. 👋')">Send Message</button>
             </div>
           </div>
-        <footer>
-            <div>
-              <span class="logo">EVO <span style="color: var(--accent2)">Mobile</span></span>
-                  <div class="social-icons">
-                      <a href="https://web.facebook.com/?_rdc=1&_rdr#" target="_blank" title="facebook">
-                        <i class="fa-brands fa-facebook-f"></i>
-                      </a>
-                      <a href="https://www.instagram.com/?hl=en" target="_blank" title="instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                      </a>
-                      <a href="https://www.tiktok.com/en/" target="_blank" title="tiktok">
-                        <i class="fa-brands fa-tiktok"></i>
-                      </a>
-                      <a href="https://web.whatsapp.com/" target="_blank" title="whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i>
-                      </a>
-                 </div>
+        <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+              <span class="footer-logo">EVO <span style="color: var(--accent2)">Mobile</span></span>
+              <div class="footer-info">
+                <p>EVO Mobile (PVT) Ltd</p>
+                <p>Pilimatalawa,</p>
+                <p>Kandy</p>
+                <p>Sri Lanka</p>
+              </div>
+              <div class="social-icons">
+                <a href="https://web.facebook.com/?_rdc=1&_rdr#" target="_blank" title="facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/?hl=en" target="_blank" title="instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/en/" target="_blank" title="tiktok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://web.whatsapp.com/" target="_blank" title="whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+              </div>
             </div>
+            <div class="footer-col">
+                <h3>Quick Navigation</h3>
+                  <ul class="footer-links">
+                    <li><a href="index.html" class="active" data-page="home">Home</a></li>
+                    <li><a href="phones.html" data-page="phones">Phones</a></li>
+                    <li><a href="accessories.html" data-page="accessories">Accessories</a></li>
+                    <li><a href="repairs.html" data-page="repairs">Repairs</a></li>
+                    <li><a href="contact.html" data-page="contact">Contact</a></li>
+                    <li><a href="about.html" data-page="about">About Us</a></li>
+                  </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Main Categories</h3>
+                <ul class="footer-links">
+                    <li><a href="phones.html" data-page="phones">iPhones</a></li>
+                    <li><a href="phones.html" data-page="phones">Samsung</a></li>
+                    <li><a href="phones.html" data-page="phones">Google Pixel</a></li>
+                    <li><a href="phones.html" data-page="phones">Redmi</a></li>
+                    <li><a href="phones.html" data-page="phones">HONOR</a></li>
+                    <li><a href="accessories.html" data-page="accessories">Accessories</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
             <p>&copy; 2026 EVO Mobile. All rights reserved.</p>
-        </footer>  
+        </div>
+        </footer> 
         
     <div class="toast" id="toast"></div>
     <script src="script.js"></script>
