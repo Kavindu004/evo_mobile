@@ -60,11 +60,13 @@
         font-size: 0.9rem;
         font-weight: 500;
         letter-spacing: 0.02em;
+        padding: 6px 0;
+        border-bottom: 2px solid transparent;
         transition: color 0.2s;
         cursor: pointer;
     }
     .nav-links a:hover {color: var(--text)}
-    .nav-links a.active{color: var(--text);font-weight: 500;}
+    .nav-links a.active{color: var(--text);font-weight: 500; border-bottom: 2px solid var(--accent2);}
     .hamburger{
         display: none;
         flex-direction: column;
@@ -218,7 +220,9 @@
         letter-spacing: 0.1em; text-transform: uppercase;
         color: var(--accent2); margin-bottom: 0.8rem;
     }
+
     /*phones*/
+
     .sort-bar{
         display: flex;
         align-items: center;
@@ -310,6 +314,28 @@
         text-decoration: none;
         margin-bottom: 0.8rem;
     }
+    .phone-color{
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    .color-dot{
+        width: 18px;
+        height: 18px;
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+    .color1{background-color: black;}
+    .color2{background-color: orange;}
+    .color3{background-color: white;}
+    .color4{background-color: gray;}
+    .color5{background-color: white;}
+    .color6{background-color: gold;}
+    .color7{background-color: rgb(5, 5, 61);}
+    .color8{background-color: lightblue;}
+    .color9{background-color: rgb(41, 2, 41);}
+
     .ph-info:hover{color: var(--accent2);}
     .phone-body .price{
         font-family: var(--font-display);
@@ -321,14 +347,14 @@
     .add-btn{
         margin-top: 0.9rem; width: 100%; padding: 0.6rem;
         background: rgba(91,91,214,0.12);
-        border: 1px solid rgba(91,91,214,0.3);
-        border-radius: 8px; color: var(--accent);
+        border: 1.5px solid black;
+        border-radius: 15px; color: var(--accent);
         font-family: var(--font-display); font-weight: 600; 
         font-size: 0.9rem; cursor: pointer;
         transition: background 0.2s,color 0.2s;
     }
     .add-btn:hover{
-        background: #8686d1; color: #fff;
+        background: black; color: #fff;
     }
 
     /*Accessories*/
@@ -385,14 +411,14 @@
     .acc-add-btn{
         background: rgba(91,91,214,0.12);
         margin-top: 1.5rem; width: 100%; padding: 0.6rem;
-        border: 1px solid #8888a8;
-        border-radius: 10px; color: var(--accent);
+        border: 1.5px solid black;
+        border-radius: 15px; color: var(--accent);
         font-family: var(--font-display); font-size: 0.87rem; font-weight: 600;
         cursor: pointer;
         transition: background 0.2s,color 0.2s;
     }
     .acc-add-btn:hover{
-        background: rgba(40, 40, 165, 0.3); color: #fff;
+        background: black; color: #fff;
     }
 
     /*Repairs*/
@@ -436,12 +462,12 @@
     .repair-amount{font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;}
     .book-repair-btn{
         display: block; width: 100%; margin-top: 2rem; padding: 1rem;
-        background: #5b5bd6; color: #f0f0f5; border: 1px solid #8888a8; border-radius: 10px;
+        background: rgba(91,91,214,0.12); color: black; border: 1.5px solid black; border-radius: 20px;
         font-family: var(--font-display); font-size: 1rem; font-weight: 700;
         cursor: pointer; text-align: center;
-        transition: background 0.2s;
+        transition: background 0.2s, color 0.2s;
     }
-    .book-repair-btn:hover{background: #6e6ef0;}
+    .book-repair-btn:hover{background: black; color: #fff;}
 
     /*Contact*/
 
@@ -482,13 +508,13 @@
     .form-group textarea{resize: vertical; min-height: 110px;}
     .form-group select option{background: var(--surface);}
     .submit-btn{
-        width: 100%; padding: 0.9rem; background: var(--accent); color: #f0f0f5;
-        border: 1px solid var(--muted); border-radius: 10px;
+        width: 100%; padding: 0.9rem; background: rgba(91,91,214,0.12); color: black;
+        border: 1.5px solid black; border-radius: 20px;
         font-family: var(--font-display); font-size: 1rem; font-weight: 600;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: background 0.2s, color 0.2s;
     }
-    .submit-btn:hover{background: #1F3A63;}
+    .submit-btn:hover{background: black; color: #fff;}
 
     /*About*/
 
@@ -522,6 +548,7 @@
     .team-card p{color: var(--muted); font-size: 0.9rem;}
 
     /*Footer*/
+
     .main-footer{
         background: #121212;
         color: #fff;
@@ -605,6 +632,7 @@
     .footer-bottom p{font-size: 0.9rem; color: #A0AEC0;}
 
     /*showToast*/
+
     .toast{
         position: fixed; bottom: 2rem; right: 2rem;
         background: var(--surface2); border: 1px solid var(--border);
@@ -618,6 +646,7 @@
     .toast.show{transform: translateY(0);opacity: 1;}
 
     /*responsive*/
+    
     @media (max-width: 700px) {
        .nav-links { display: none; flex-direction: column; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--surface); padding: 1rem 5%; border-bottom: 1px solid var(--border); gap: 0; }
        .nav-links.open { display: flex; }
